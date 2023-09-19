@@ -17,14 +17,14 @@ class SyntaxTreeParser {
       if (file.is_open()) {
         clog << "Compiling source to ./" + filename;
 
-        file << "#include <iostream>";
-        file << "using namespace std;";
-        file << "int main() {";
+        file << "#include <iostream>" << endl;
+        file << "using namespace std;" << endl;
+        file << "int main() {" << endl;
         
         this->traverse(node, file);
 
-        file << "return 0;";
-        file << "}";
+        file << "return 0;" << endl;
+        file << "}" << endl;
 
         file.close();
       } else {
@@ -54,7 +54,7 @@ class SyntaxTreeParser {
     void handlePrint(const Value& node, ofstream& file) {
       string printableNode = "";
       if (node["value"]["kind"].asString() == "Str") {
-        printableNode = "cout << \"" + node["value"]["value"].asString() + "\";"; 
+        printableNode = "cout << \"" + node["value"]["value"].asString() + "\";\n"; 
       }
       
       file << printableNode;
